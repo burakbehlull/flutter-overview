@@ -6,7 +6,10 @@ class MyCounterApp extends StatefulWidget {
 }
 
 class _CounterState extends State<MyCounterApp> {
+  final TextEditingController _counterController = TextEditingController();
+  String _text = '';
   int counter = 0; 
+  int counterStore = 0; 
 
   void arttir() {
     setState(() {
@@ -36,6 +39,24 @@ class _CounterState extends State<MyCounterApp> {
               child: Icon(Icons.add),
             ),
             ElevatedButton(onPressed: azalt, child: Icon(Icons.remove)),
+        
+          TextField(onChanged: (value){
+            setState(() {
+              counterStore = int.parse(value);
+            });
+          },controller: _counterController),
+
+          ElevatedButton(onPressed: (){
+            setState(() {
+              counter += counterStore; 
+            });
+          }, child: Text('Ekle')),
+          ElevatedButton(onPressed: (){
+            setState(() {
+              counter -=counterStore;
+            });
+          }, child: Text('Sil'))
+          
           ],
         ),
       ),
